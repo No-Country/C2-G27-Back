@@ -1,0 +1,29 @@
+{
+  "name": "c2-g27-back",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "lint": "eslint .  --ext .js",
+    "lint-fix": "eslint --fix .  --ext .js",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "husky": "^7.0.4",
+    "morgan": "~1.9.1",
+    "mysql2": "^2.2.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "husky": "^7.0.0",
+    "sequelize-cli": "^6.3.0"
+  }
+}
