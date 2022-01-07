@@ -6,10 +6,8 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
-// eslint-disable-next-line no-console
-console.log(URI)
 const sequelize = new Sequelize(URI, {
-  dialect:'mysql',
+  dialect: process.env.DB_DIALECT,
   logging:true,
 });
 
