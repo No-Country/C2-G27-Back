@@ -1,0 +1,11 @@
+{
+  "dev": {
+    "database": {
+      "name": "fintech",
+      "host": "localhost",
+      "username": "fintech",
+      "password": "PjmhMA9Zm8SBfF73sjbfR2VF9UmG6yvN",
+      "dialect": "mysql"
+    }
+  }
+}
