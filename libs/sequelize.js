@@ -1,16 +1,15 @@
 const { Sequelize } = require('sequelize');
-const { config } = require('../config/config');
-//const setupModels  = require('../db/models');
+const setupModels = require('../db/models');
 
-const USER = encodeURIComponent(config.dbUser);
-const PASSWORD = encodeURIComponent(config.dbPassword);
-const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+const USER = encodeURIComponent(process.env.DB_USER);
+const PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);
+const URI = `${process.env.DB_DIALECT}://${USER}:${PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
 const sequelize = new Sequelize(URI, {
-  dialect: process.env.DB_DIALECT,
-  logging:true,
+  dialect: 'mysql',
+  logging: true,
 });
 
-//setupModels(sequelize);
+setupModels(sequelize);
 
 module.exports = sequelize;

@@ -1,11 +1,11 @@
-const UsersService = require('../services/users.service');
+const PeopleService = require('../services/people.service');
 const passport = require('passport');
 const { checkRoles } = require('../middlewares/auth.handler');
 
 const express = require('express');
 const router = express.Router();
 
-const usersService = new UsersService();
+const peopleService = new PeopleService();
 
 router.get(
   '/',
@@ -13,8 +13,8 @@ router.get(
   checkRoles('admin', 'viewer'),
   async (req, res, next) => {
     try {
-      const users = await usersService.find();
-      res.json(users);
+      const people = await peopleService.find();
+      res.json(people);
     } catch (error) {
       next(error);
     }
@@ -28,9 +28,8 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const user = await usersService.findOne(id);
-
-      res.json(user);
+      const person = await peopleService.findOne(id);
+      res.json(person);
     } catch (error) {
       next(error);
     }
@@ -44,9 +43,8 @@ router.post(
   async (req, res, next) => {
     try {
       const body = req.body;
-      const user = await usersService.create(body);
-
-      res.json(user);
+      const person = await peopleService.create(body);
+      res.json(person);
     } catch (error) {
       next(error);
     }
@@ -61,10 +59,8 @@ router.put(
     try {
       const { id } = req.params;
       const body = req.body;
-
-      const user = await usersService.update(id, body);
-
-      res.json(user);
+      const person = await peopleService.update(id, body);
+      res.json(person);
     } catch (error) {
       next(error);
     }
@@ -79,10 +75,8 @@ router.patch(
     try {
       const { id } = req.params;
       const body = req.body;
-
-      const user = await usersService.partialUpdate(id, body);
-
-      res.json(user);
+      const person = await peopleService.partialUpdate(id, body);
+      res.json(person);
     } catch (error) {
       next(error);
     }
@@ -96,8 +90,8 @@ router.delete(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const user = await usersService.delete(id);
-      res.json(user);
+      const person = await peopleService.delete(id);
+      res.json(person);
     } catch (error) {
       next(error);
     }

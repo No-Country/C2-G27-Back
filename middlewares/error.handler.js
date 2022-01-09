@@ -1,16 +1,37 @@
-function boomErrorHandler(error, req, res, next){
-    if(error.isBoom){
-      const { output } = error;
-      res.status(output.statusCode).json(output.payload)
-    }
-    next(error);
+function logErrors(err, req, res, next) {
+  console.error(err);
+  next(err);
+}
+
+function boomErrorHandler(err, req, res, next) {
+  if (err.isBoom) {
+    const { output } = err;
+    res.status(output.statusCode).json(output.payload);
+  } else {
+    next(err);
   }
-  
-  function sequelizeErrorHandler(error, req, res){
-    res.status(error.status || 500).json({
-      status: 'error',
-      error: {message: error.message},
-    })
-  }
-  
-  module.exports = { boomErrorHandler, sequelizeErrorHandler };
+}
+
+function sequelizeErrorHandler(err, req, res, next) {
+  res.status(409).json({
+    statusCode: 409,
+    type: err.name,
+    message: err.message,
+  });
+
+  next(err);
+}
+
+function errorHandler(err, req, res, next) {
+  res.status(500).json({
+    message: err.message,
+    stack: err.stack,
+  });
+}
+
+module.exports = {
+  logErrors,
+  errorHandler,
+  boomErrorHandler,
+  sequelizeErrorHandler,
+};
