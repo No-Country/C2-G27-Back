@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node ./bin/www",
+    "start": "node index.js",
     "lint": "eslint .  --ext .js",
     "lint-fix": "eslint --fix .  --ext .js",
-    "prepare": "husky install",
     "migrations:generate": "sequelize-cli migration:generate --name",
     "migrations:run": "sequelize-cli db:migrate",
     "migrations:revert": "sequelize-cli db:migrate:undo",
@@ -16,25 +15,22 @@
   "dependencies": {
     "@hapi/boom": "^9.1.4",
     "bcrypt": "^5.0.1",
-    "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "husky": "^7.0.4",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "~1.9.1",
-    "mysql2": "^2.2.3",
+    "mysql2": "^2.3.3",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "dotenv": "^8.6.0",
     "eslint": "^8.6.0",
-    "husky": "^7.0.0",
     "sequelize-cli": "^6.3.0"
   }
 }

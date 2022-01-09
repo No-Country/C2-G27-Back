@@ -8,5 +8,5 @@ module.exports = {
 
   down: async (queryInterface) => {
     await queryInterface.dropTable(PEOPLE_TABLE);
-  }
+  },
 };

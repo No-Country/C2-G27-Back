@@ -3,49 +3,48 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 const PEOPLE_TABLE = 'people';
 
 const People_Schema = {
-  id:{
+  id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
-  name:{
+  name: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
-  lastName:{
+  lastName: {
     allowNull: true,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
-  createdAt:{
+  createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'create_at',
-    defaultValue: Sequelize.NOW
+    defaultValue: Sequelize.NOW,
   },
-  updatedAt:{
+  updatedAt: {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'update_at',
-    defaultValue: Sequelize.NOW
-  }
-}
+    defaultValue: Sequelize.NOW,
+  },
+};
 
-class People extends Model
-{
-  static associate(models){
+class People extends Model {
+  static associate(models) {
     this.hasOne(models.Users, {
-      as:'users',
-      foreignKey:'peopleId'
+      as: 'users',
+      foreignKey: 'peopleId',
     });
   }
-  static config(sequelize){
+  static config(sequelize) {
     return {
       sequelize,
       tableName: PEOPLE_TABLE,
       modelName: 'People',
-      timestamps: true
-    }
+      timestamps: true,
+    };
   }
 }
 
-module.exports = { PEOPLE_TABLE, People_Schema, People }
+module.exports = { PEOPLE_TABLE, People_Schema, People };

@@ -1,24 +1,30 @@
 const UsersService = require('../services/users.service');
 const passport = require('passport');
+const { checkRoles } = require('../middlewares/auth.handler');
 
 const express = require('express');
 const router = express.Router();
 
 const usersService = new UsersService();
 
-router.get('/', async (req, res, next) => {
-  try {
-    //const users = await usersService.find();
-
-    res.json({ holas: 'holas' });
-  } catch (error) {
-    next(error);
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'viewer'),
+  async (req, res, next) => {
+    try {
+      const users = await usersService.find();
+      res.json(users);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   '/:id',
   passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'viewer'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -34,6 +40,7 @@ router.get(
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
+  checkRoles('admin'),
   async (req, res, next) => {
     try {
       const body = req.body;
@@ -49,7 +56,8 @@ router.post(
 router.put(
   '/:id',
   passport.authenticate('jwt', { session: false }),
-  async (req, res) => {
+  checkRoles('admin'),
+  async (req, res, next) => {
     try {
       const { id } = req.params;
       const body = req.body;
@@ -58,7 +66,7 @@ router.put(
 
       res.json(user);
     } catch (error) {
-      res.json(error);
+      next(error);
     }
   }
 );
@@ -66,7 +74,8 @@ router.put(
 router.patch(
   '/:id',
   passport.authenticate('jwt', { session: false }),
-  async (req, res) => {
+  checkRoles('admin'),
+  async (req, res, next) => {
     try {
       const { id } = req.params;
       const body = req.body;
@@ -75,7 +84,7 @@ router.patch(
 
       res.json(user);
     } catch (error) {
-      res.json(error);
+      next(error);
     }
   }
 );
@@ -83,14 +92,14 @@ router.patch(
 router.delete(
   '/:id',
   passport.authenticate('jwt', { session: false }),
-  async (req, res) => {
+  checkRoles('admin'),
+  async (req, res, next) => {
     try {
       const { id } = req.params;
-      const user = usersService.delete(id);
-
+      const user = await usersService.delete(id);
       res.json(user);
     } catch (error) {
-      res.json(error);
+      next(error);
     }
   }
 );

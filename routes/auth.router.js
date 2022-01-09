@@ -1,11 +1,13 @@
 const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const { checkApiKey } = require('../middlewares/auth.handler');
 
 const router = express.Router();
 
 router.post(
   '/login',
+  checkApiKey,
   passport.authenticate('local', { session: false }),
   async (req, res, next) => {
     try {
@@ -14,7 +16,8 @@ router.post(
         sub: user.id,
         role: user.role,
       };
-      const token = jwt.sign(payload, process.env.JWT_SECRET);
+      const token = await jwt.sign(payload, process.env.JWT_SECRET);
+      delete user.dataValues.password;
       res.json({ user, token });
     } catch (error) {
       next(error);
