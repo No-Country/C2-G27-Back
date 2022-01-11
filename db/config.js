@@ -1,8 +1,11 @@
-const { config } = require('../config/sequelize/config');
-
-const USER = encodeURIComponent(config.dbUser);
-const PASSWORD = encodeURIComponent(config.dbPassword);
-const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+let URI = null;
+if (process.env.NODE_ENV === 'prod') {
+  URI = process.env.DATABASE_URL;
+} else {
+  const USER = encodeURIComponent(process.env.DB_USER);
+  const PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);
+  URI = `${process.env.DB_DIALECT}://${USER}:${PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+}
 
 module.exports = {
   development: {
@@ -12,5 +15,10 @@ module.exports = {
   production: {
     url: URI,
     dialect: 'mysql',
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
   },
 };
