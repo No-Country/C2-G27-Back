@@ -9,8 +9,8 @@ module.exports = {
         id: peopleId,
         name: 'admin',
         lastName: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        create_at: new Date(),
+        update_at: new Date(),
       },
     ]);
     await queryInterface.bulkInsert('Users', [
@@ -21,8 +21,8 @@ module.exports = {
         password: await bcrypt.hash(process.env.DEFAULT_USER_SECRET, 15),
         role: 'admin',
         people_id: peopleId,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        create_at: new Date(),
+        update_at: new Date(),
       },
     ]);
   },
