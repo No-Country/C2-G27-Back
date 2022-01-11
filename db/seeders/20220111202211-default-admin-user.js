@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const peopleId = uuidv4();
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Person', [
+    await queryInterface.bulkInsert('People', [
       {
         id: peopleId,
         name: 'admin',
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Person', null, {});
+    await queryInterface.bulkDelete('People', null, {});
     await queryInterface.bulkDelete('Users', null, {});
   },
 };
