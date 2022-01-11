@@ -1,6 +1,6 @@
 let URI = null;
-if (process.env.NODE_ENV === 'prod') {
-  URI = process.env.DATABASE_URL;
+if (process.env.NODE_ENV === 'production') {
+  URI = process.env.CLEARDB_DATABASE_URL;
 } else {
   const USER = encodeURIComponent(process.env.DB_USER);
   const PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);

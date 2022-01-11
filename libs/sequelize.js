@@ -7,8 +7,8 @@ const options = {
 };
 
 let URI = null;
-if (process.env.NODE_ENV === 'prod') {
-  URI = process.env.DATABASE_URL;
+if (process.env.NODE_ENV === 'production') {
+  URI = process.env.CLEARDB_DATABASE_URL;
 
   options.logging = false;
   options.dialectOptions = {
