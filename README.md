@@ -1,381 +1,411 @@
 # Fintech
 
-### GET main
+### GET | _main path_
 
-```sh
-http://localhost:3000
-```
+[https://fintech-no-contry.herokuapp.com](https://fintech-no-contry.herokuapp.com)
 
-#### Example Request
+| AUTHORIZATION |
+| ------------- |
+| none          |
 
-```
-var requestOptions = {
+#### Example Request | _main path_
+
+```js
+const requestOptions = {
   method: 'GET',
-  redirect: 'follow'
+  redirect: 'follow',
 };
 
-fetch("http://localhost:3000", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### POST login
+### POST | _login path_
 
-<Security>
-```sh
-http://localhost:3000/api/v1/auth/login
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/auth/login](https://fintech-no-contry.herokuapp.com/api/v1/auth/login)
 
 | AUTHORIZATION | API Key |
 | ------------- | ------- |
-| Key           | <key>   |
-| Value         | <value> |
-
-|BODY raw
-
-```
-{
-    "username":"admin",
-    "password":"mdr@tRa%%E$Y2Ke%M?4vxuaZGDYbMk"
-}
-```
+| Key           | api     |
+| Value         | key     |
 
 #### Example Request | login
 
-```
-var raw = "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"mdr@tRa%%E$Y2Ke%M?4vxuaZGDYbMk\"\r\n}";
+```js
+const raw = { username: 'username', password: 'password' };
 
-var requestOptions = {
+const requestOptions = {
   method: 'POST',
-  body: raw,
-  redirect: 'follow'
+  body: JSON.stringify(raw),
+  redirect: 'follow',
+  headers: {
+    api: 'apiKey',
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("https://fintech-no-contry.herokuapp.com/api/v1/auth/login", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch(
+  'https://fintech-no-contry.herokuapp.com/api/v1/auth/login',
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### GET users
+### GET | _users_
 
-<Security>
-```sh
-{{API}}users
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/users](https://fintech-no-contry.herokuapp.com/api/v1/users)
 | AUTHORIZATION | Bearer Token |
 | ------ | ------ |
-| Token | <Token> |
+| Token | token |
 
-#### Example Request | users
+#### Example Request | _users_
 
-```
-var requestOptions = {
+```js
+const token = 'token';
+
+const requestOptions = {
   method: 'GET',
-  redirect: 'follow'
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("{{API}}users", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com/api/v1/users', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### GET users
+### GET | _user_
 
-<Security>
-```sh
-http://localhost:3000/api/v1/users
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/users](https://fintech-no-contry.herokuapp.com/api/v1/users)
 | AUTHORIZATION | Bearer Token |
 | ------ | ------ |
-| Token | <Token> |
+| Token | token |
 
-#### Example Request | users
+#### Example Request | _user_
 
-```
-var requestOptions = {
+```js
+const token = 'token';
+
+const requestOptions = {
   method: 'GET',
-  redirect: 'follow'
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/users", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch(
+  'https://fintech-no-contry.herokuapp.com/api/v1/users/{id}',
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### POST users
+### POST | _user_
 
-<Security>
-```sh
-http://localhost:3000/api/v1/users
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/users](https://fintech-no-contry.herokuapp.com/api/v1/users)
+
 | AUTHORIZATION | Bearer Token |
-| ------ | ------ |
-| Token | <Token> |
-|  BODYraw |   |
+| ------------- | ------------ |
+| Token         | token        |
 
-```
-{
-    "username": "ernestico6",
-    "email": "ernesto6@example.com",
-    "password": "ernestoernesto",
+#### Example Request | _Create user_
+
+```js
+const raw= {
+    "username": "username",
+    "email": "example@example.com",
+    "password": "password"
     "role": "admin"
-}
-```
+    "peopleId":"peopleId"
+};
 
-#### Example Request | Create user
+const token = 'token';
 
-```
-var raw = "{\r\n    \"username\": \"ernestico6\",\r\n    \"email\": \"ernesto6@example.com\",\r\n    \"password\": \"ernestoernesto\",\r\n    \"role\": \"admin\"\r\n}";
-
-var requestOptions = {
+const requestOptions = {
   method: 'POST',
-  body: raw,
-  redirect: 'follow'
+  body: raw
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/users", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com/api/v1/users', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### PUT Update users
+### PUT | Update users
 
-<Security>
-```sh
-http://localhost:3000/api/v1/users/145663aa-ea8a-4387-9612-752bd83296bd
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/users](https://fintech-no-contry.herokuapp.com/api/v1/users)
+
 | AUTHORIZATION | Bearer Token |
-| ------ | ------ |
-| Token | <Token> |
-|  BODYraw |   |
+| ------------- | ------------ |
+| Token         | token        |
 
-```
-{
-    "username": "bob443",
-    "email": "bobtheboss443@example.com",
-    "password": "$2b$15$ZYbrj0N4UywUZOy5G3ffCe2VclXo9s./x/Vju4w2CpqzhubZVmmGG",
-    "role": "admin",
-    "peopleId": "078d8b0b-4c19-4694-be81-8dde701331a1"
-}
-```
+#### Example Request | _Update user_
 
-#### Example Request | Update user
+```js
+const raw= {
+    "username": "username",
+    "email": "example@example.com",
+    "password": "password"
+    "role": "admin"
+    "peopleId":"peopleId"
+};
 
-```
-var raw = "{\r\n    \"username\": \"bob443\",\r\n    \"email\": \"bobtheboss443@example.com\",\r\n    \"password\": \"$2b$15$ZYbrj0N4UywUZOy5G3ffCe2VclXo9s./x/Vju4w2CpqzhubZVmmGG\",\r\n    \"role\": \"admin\",\r\n    \"peopleId\": \"078d8b0b-4c19-4694-be81-8dde701331a1\"\r\n}";
+const token = 'token';
 
-var requestOptions = {
+const requestOptions = {
   method: 'PUT',
-  body: raw,
-  redirect: 'follow'
+  body: raw
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/users/145663aa-ea8a-4387-9612-752bd83296bd", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com/api/v1/users/{id}', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### DEL Delete user
+### DELETE | Delete user
 
-<Security>
-```sh
-http://localhost:3000/api/v1/users/03218889-52ff-4106-9260-0e51ee53b0d6
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/users](https://fintech-no-contry.herokuapp.com/api/v1/users)
+
 | AUTHORIZATION | Bearer Token |
-| ------ | ------ |
-| Token | <Token> |
+| ------------- | ------------ |
+| Token         | token        |
 
-#### Example Request | Delete user
+#### Example Request | _Delete user_
 
-```
-var requestOptions = {
+```js
+const token = 'token';
+
+const requestOptions = {
   method: 'DELETE',
-  redirect: 'follow'
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/users/03218889-52ff-4106-9260-0e51ee53b0d6", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch(
+  'https://fintech-no-contry.herokuapp.com/api/v1/users/{id}',
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### GET people
+### GET | _people_
 
-<Security>
-```sh
-http://localhost:3000/api/v1/people
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/people](https://fintech-no-contry.herokuapp.com/api/v1/people)
 | AUTHORIZATION | Bearer Token |
 | ------ | ------ |
-| Token | <Token> |
+| Token | token |
 
-#### Example Request | people
+#### Example Request | _people_
 
-```
-var requestOptions = {
+```js
+const token = 'token';
+
+const requestOptions = {
   method: 'GET',
-  redirect: 'follow'
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/people", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com/api/v1/people', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### GET person
+### GET | _person_
 
-<Security>
-```sh
-http://localhost:3000/api/v1/users/03218889-52ff-4106-9260-0e51ee53b0d6
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/people](https://fintech-no-contry.herokuapp.com/api/v1/people)
 | AUTHORIZATION | Bearer Token |
 | ------ | ------ |
-| Token | <Token> |
+| Token | token |
 
-#### Example Request | person
+#### Example Request | _person_
 
-```
-vvar requestOptions = {
+```js
+const token = 'token';
+
+const requestOptions = {
   method: 'GET',
-  redirect: 'follow'
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/users/03218889-52ff-4106-9260-0e51ee53b0d6", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch(
+  'https://fintech-no-contry.herokuapp.com/api/v1/people/{id}',
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### POST Create person
+### POST | _person_
 
-<Security>
-```sh
-http://localhost:3000/api/v1/people
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/people](https://fintech-no-contry.herokuapp.com/api/v1/people)
+
 | AUTHORIZATION | Bearer Token |
-| ------ | ------ |
-| Token | <Token> |
-| BODYraw |  |
+| ------------- | ------------ |
+| Token         | token        |
 
-```
-{
-    "name":"alice",
-    "lastName":"marley",
+#### Example Request | _Create person_
+
+```js
+const raw= {
+    "name":"name",
+    "lastName":"lastname",
     "user":{
-        "username": "marley21",
-        "email": "marley21@example.com",
-        "password": "121225",
+        "username": "username",
+        "email": "example@example.com",
+        "password": "password",
         "role": "admin"
         }
-}
-```
+};
 
-#### Example Request | Create person
+const token = 'token';
 
-```
-var raw = "{\r\n    \"name\":\"alice\",\r\n    \"lastName\":\"marley\",    \r\n    \"user\":{        \r\n        \"username\": \"marley21\",\r\n        \"email\": \"marley21@example.com\",\r\n        \"password\": \"121225\",\r\n        \"role\": \"admin\"\r\n        }\r\n}";
-
-var requestOptions = {
+const requestOptions = {
   method: 'POST',
-  body: raw,
-  redirect: 'follow'
+  body: raw
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/people", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com/api/v1/people/', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### PUT Update person
+### PUT | Update people
 
-<Security>
-```sh
-http://localhost:3000/api/v1/people/e90aa187-beac-4d27-8d10-d8565ace579b
-```
+[https://fintech-no-contry.herokuapp.com/api/v1/people](https://fintech-no-contry.herokuapp.com/api/v1/people)
+
 | AUTHORIZATION | Bearer Token |
-| ------ | ------ |
-| Token | <Token> |
-| BODYraw |  |
+| ------------- | ------------ |
+| Token         | token        |
 
-```
-{
-    "name":"alice",
-    "lastName":"speckter"
-}
-```
+#### Example Request | _Update person_
 
-#### Example Request | Update person
+```js
+const raw= {
+    "name":"name",
+    "lastName":"lastname",
+    "user":{
+        "username": "username",
+        "email": "example@example.com",
+        "password": "password",
+        "role": "admin"
+        }
+};
 
-```
-var raw = "{\r\n    \"name\":\"alice\",\r\n    \"lastName\":\"speckter\"\r\n}";
+const token = 'token';
 
-var requestOptions = {
+const requestOptions = {
   method: 'PUT',
-  body: raw,
-  redirect: 'follow'
+  body: raw
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/people/e90aa187-beac-4d27-8d10-d8565ace579b", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
+fetch('https://fintech-no-contry.herokuapp.com/api/v1/people/{id}', requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
 ---
 
-### DEL Delete person
+### DELETE | Delete person
 
-<Security>
-```sh
-http://localhost:3000/api/v1/people/9fa03c99-8559-44a5-866a-41ea55a5c7b9
+[https://fintech-no-contry.herokuapp.com/api/v1/people](https://fintech-no-contry.herokuapp.com/api/v1/people)
 
-```
 | AUTHORIZATION | Bearer Token |
-| ------ | ------ |
-| Token | <Token> |
+| ------------- | ------------ |
+| Token         | token        |
 
-```
+#### Example Request | _Delete person_
 
-#### Example Request | Delete person
+```js
+const token = 'token';
 
-var requestOptions = {
-method: 'DELETE',
-redirect: 'follow'
+const requestOptions = {
+  method: 'DELETE',
+  redirect: 'follow',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  },
 };
 
-fetch("http://localhost:3000/api/v1/people/9fa03c99-8559-44a5-866a-41ea55a5c7b9", requestOptions)
-.then(response => response.text())
-.then(result => console.log(result))
-.catch(error => console.log('error', error));
-
+fetch(
+  'https://fintech-no-contry.herokuapp.com/api/v1/people/{id}',
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log('error', error));
 ```
 
-```
+---
