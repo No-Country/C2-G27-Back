@@ -48,6 +48,10 @@ const Users_Schema = {
 class Users extends Model {
   static associate(models) {
     this.belongsTo(models.People, { as: 'people' });
+    this.hasMany(models.Wallets, {
+      as: 'wallets',
+      foreignKey: 'userId',
+    });
   }
   static config(sequelize) {
     return {
