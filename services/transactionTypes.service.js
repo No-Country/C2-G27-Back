@@ -20,7 +20,7 @@ class TransactionTypesService {
 
   async find() {
     try {
-      const transactionTypes = await models.transaction_typess.findAll();
+      const transactionTypes = await models.transaction_Types.findAll();
       if (transactionTypes.length === 0) {
         throw boom.notFound('no transaction types found');
       }
@@ -32,13 +32,13 @@ class TransactionTypesService {
 
   async findOne(id) {
     try {
-      const transactionTypes = await models.transaction_typess.findByPk(id);
+      const transactionTypes = await models.transaction_Types.findByPk(id);
       if (!transactionTypes) {
         throw boom.notFound('transaction type not found');
       }
       return transactionTypes;
     } catch (error) {
-      throw boom.boomify(error, 'error finding transaction typess');
+      throw boom.boomify(error, 'error finding transaction types');
     }
   }
 
@@ -63,7 +63,7 @@ class TransactionTypesService {
 
       return res;
     } catch (error) {
-      throw boom.boomify(error, 'error updating transaction typess');
+      throw boom.boomify(error, 'error updating transaction types');
     }
   }
 

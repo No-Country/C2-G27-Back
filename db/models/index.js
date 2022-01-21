@@ -14,6 +14,7 @@ const {
   Transaction_Types,
   Transaction_Types_Schema,
 } = require('./transactionTypes.model');
+const { Transactions, Transactions_Schema } = require('./transactions.model');
 
 function setupModels(sequelize) {
   People.init(People_Schema, People.config(sequelize));
@@ -32,6 +33,7 @@ function setupModels(sequelize) {
     Transaction_Types_Schema,
     Transaction_Types.config(sequelize)
   );
+Transactions.init(Transactions_Schema, Transactions.config(sequelize);
 
   Users.associate(sequelize.models);
   People.associate(sequelize.models);
@@ -40,6 +42,7 @@ function setupModels(sequelize) {
   Transaction_Networks.associate(sequelize.models);
   Assets.associate(sequelize.models);
   Transaction_Types.associate(sequelize.models);
+  Transactions.associate(sequelize);
 }
 
 module.exports = setupModels;
