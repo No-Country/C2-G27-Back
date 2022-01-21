@@ -30,6 +30,10 @@ const Wallets_Schema = {
 class Wallets extends Model {
   static associate(models) {
     this.belongsTo(models.Users, { as: 'users' });
+    this.hasMany(models.Wallet_Assets_Summaries, {
+      as: 'Wallet_Assets_Summaries',
+      foreignKey: 'walletId',
+    });
   }
   static config(sequelize) {
     return {
