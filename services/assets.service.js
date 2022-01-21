@@ -43,7 +43,7 @@ class AssetsService {
   }
 
   async update(id, body) {
-    const asset = await models.Assets.findOne(id);
+    const asset = await this.findOne(id);
     try {
       const res = await asset.update(body);
       if (!res) {
@@ -67,7 +67,7 @@ class AssetsService {
   } */
 
   async delete(id) {
-    const asset = await models.Assets.findOne(id);
+    const asset = await this.findOne(id);
     try {
       const res = asset.destroy();
       if (!res) {

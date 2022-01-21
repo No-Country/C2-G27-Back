@@ -15,7 +15,7 @@ const Savings_Schema = {
   },
   savingsTierRateId: {
     allowNull: false,
-    field: 'savings_tier_rate_id',
+    field: 'saving_tier_rate_id',
     type: DataTypes.STRING,
   },
   walletId: {

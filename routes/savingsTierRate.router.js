@@ -1,4 +1,4 @@
-const SavingsTierRateService = require('../services/savingsTierRates.service');
+const SavingsTierRateService = require('../services/savingsTierRate.service');
 const passport = require('passport');
 const { checkRoles } = require('../middlewares/auth.handler');
 

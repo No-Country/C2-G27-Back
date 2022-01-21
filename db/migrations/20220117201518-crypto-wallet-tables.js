@@ -20,7 +20,7 @@ const {
 const { Savings_Schema, SAVINGS_TABLE } = require('../models/savings.model');
 const {
   Savings_Tier_Rate_Schema,
-  SAVING_TIER_RATE_TABLE,
+  SAVINGS_TIER_RATE_TABLE,
 } = require('../models/savingsTierRate.model');
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
     await queryInterface.createTable(TRANSACTIONS_TABLE, Transactions_Schema);
     await queryInterface.createTable(SAVINGS_TABLE, Savings_Schema);
     await queryInterface.createTable(
-      SAVING_TIER_RATE_TABLE,
+      SAVINGS_TIER_RATE_TABLE,
       Savings_Tier_Rate_Schema
     );
   },
