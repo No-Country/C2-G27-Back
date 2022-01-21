@@ -1,17 +1,17 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const TRANSACTION_NETWORKS_TABLE = 'transaction_networks';
+const TRANSACTION_TYPES_TABLE = 'transaction_types';
 
-const Transaction_Networks_Schema = {
+const Transaction_Types_Schema = {
   id: {
     allowNull: false,
     primaryKey: true,
     type: DataTypes.STRING,
   },
-  transactionNeworkName: {
+  transactionTypeName: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: 'transaction_network_name',
+    field: 'transaction_type_name',
     unique: true,
   },
   createdAt: {
@@ -28,24 +28,25 @@ const Transaction_Networks_Schema = {
   },
 };
 
-class Transaction_Networks extends Model {
+class Transaction_Types extends Model {
   static associate(models) {
     /* this.hasMany(models.Transactions, {
       as: 'Transactions',
+      foreignKey: 'transaction_type_id'
     }); */
   }
   static config(sequelize) {
     return {
       sequelize,
-      tableName: TRANSACTION_NETWORKS_TABLE,
-      modelName: 'Transaction_Networks',
+      tableName: TRANSACTION_TYPES_TABLE,
+      modelName: 'Transactions_Types',
       timestamps: true,
     };
   }
 }
 
 module.exports = {
-  TRANSACTION_NETWORKS_TABLE,
-  Transaction_Networks_Schema,
-  Transaction_Networks,
+  TRANSACTION_TYPES_TABLE,
+  Transaction_Types_Schema,
+  Transaction_Types,
 };

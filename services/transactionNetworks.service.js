@@ -5,7 +5,7 @@ const { models } = require('../libs/sequelize');
 class TransactionNetworksService {
   async create(body) {
     try {
-      const newTransactionNetworks = await models.Transactions.create({
+      const newTransactionNetworks = await models.Transactions_Networks.create({
         id: uuidv4(),
         ...body,
       });
@@ -24,7 +24,7 @@ class TransactionNetworksService {
         include: ['transactions'],
       });
       if (transactionNetworks.length === 0) {
-        throw boom.notFound('no Transactions found');
+        throw boom.notFound('no Transactions networks found');
       }
       return { Transactions };
     } catch (error) {
