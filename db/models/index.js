@@ -16,6 +16,10 @@ const {
 } = require('./transactionTypes.model');
 const { Transactions, Transactions_Schema } = require('./transactions.model');
 const { Savings, Savings_Schema } = require('./savings.model');
+const {
+  Savings_Tier_Rate,
+  Savings_Tier_Rate_Schema,
+} = require('./savingsTierRate.model');
 
 function setupModels(sequelize) {
   People.init(People_Schema, People.config(sequelize));
@@ -36,6 +40,10 @@ function setupModels(sequelize) {
   );
   Transactions.init(Transactions_Schema, Transactions.config(sequelize));
   Savings.init(Savings_Schema, Savings.config(sequelize));
+  Savings_Tier_Rate.init(
+    Savings_Tier_Rate_Schema,
+    Savings_Tier_Rate.config(sequelize)
+  );
 
   Users.associate(sequelize.models);
   People.associate(sequelize.models);
@@ -44,8 +52,9 @@ function setupModels(sequelize) {
   Transaction_Networks.associate(sequelize.models);
   Assets.associate(sequelize.models);
   Transaction_Types.associate(sequelize.models);
-  Transactions.associate(sequelize);
-  Savings.associate(sequelize);
+  Transactions.associate(sequelize.models);
+  Savings.associate(sequelize.models);
+  Savings_Tier_Rate.associate(sequelize.models);
 }
 
 module.exports = setupModels;

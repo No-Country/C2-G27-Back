@@ -39,7 +39,7 @@ class Transaction_Types extends Model {
     return {
       sequelize,
       tableName: TRANSACTION_TYPES_TABLE,
-      modelName: 'Transactions_Types',
+      modelName: 'Transaction_Types',
       timestamps: true,
     };
   }

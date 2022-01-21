@@ -58,22 +58,22 @@ const Assets_Schema = {
 
 class Assets extends Model {
   static associate(models) {
-    /*     this.hasMany(models.Transactions, {
+    this.hasMany(models.Transactions, {
       as: 'Transactions',
       foreignKey: 'assetId',
-    }); */
+    });
     this.hasMany(models.Wallet_Assets_Summaries, {
       as: 'Wallet_Assets_Summaries',
       foreignKey: 'assetId',
     });
-    /*  this.hasMany(models.Savings, {
+    this.hasMany(models.Savings, {
       as: 'savings',
       foreignKey: 'assetId',
-    }); */
-    /* this.hasMany(models.Savings_Tier_Rate, {
+    });
+    this.hasMany(models.Savings_Tier_Rate, {
       as: 'Savings_Tier_Rate',
       foreignKey: 'assetId',
-    }); */
+    });
   }
   static config(sequelize) {
     return {

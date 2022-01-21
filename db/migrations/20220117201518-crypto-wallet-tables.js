@@ -18,6 +18,10 @@ const {
   TRANSACTIONS_TABLE,
 } = require('../models/transactions.model');
 const { Savings_Schema, SAVINGS_TABLE } = require('../models/savings.model');
+const {
+  Savings_Tier_Rate_Schema,
+  SAVING_TIER_RATE_TABLE,
+} = require('../models/savingsTierRate.model');
 
 module.exports = {
   up: async (queryInterface) => {
@@ -37,6 +41,10 @@ module.exports = {
     );
     await queryInterface.createTable(TRANSACTIONS_TABLE, Transactions_Schema);
     await queryInterface.createTable(SAVINGS_TABLE, Savings_Schema);
+    await queryInterface.createTable(
+      SAVING_TIER_RATE_TABLE,
+      Savings_Tier_Rate_Schema
+    );
   },
 
   down: async (queryInterface) => {
@@ -46,6 +54,7 @@ module.exports = {
     await queryInterface.dropTable(WALLETS_TABLE);
     await queryInterface.dropTable(TRANSACTION_NETWORKS_TABLE);
     await queryInterface.dropTable(TRANSACTION_TYPES_TABLE);
+    await queryInterface.dropTable(SAVING_TIER_RATE_TABLE);
     await queryInterface.dropTable(ASSETS_TABLE);
   },
 };

@@ -61,7 +61,7 @@ class Transactions extends Model {
     this.belongsTo(models.Wallets, { as: 'wallets' });
     this.belongsTo(models.Assets, { as: 'assets' });
     this.belongsTo(models.Transaction_Networks, { as: 'Transaction_Networks' });
-    this.belongsTo(models.Transaction_Type, { as: 'Transaction_Type' });
+    this.belongsTo(models.Transaction_Types, { as: 'Transaction_Types' });
   }
   static config(sequelize) {
     return {

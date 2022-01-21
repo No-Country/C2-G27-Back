@@ -60,7 +60,7 @@ const Savings_Schema = {
 class Savings extends Model {
   static associate(models) {
     this.belongsTo(models.Assets, { as: 'assets' });
-    /*     this.belongsTo(models.SavingsTierRate, { as: 'Savigs_Tier_Rate' }); */
+    this.belongsTo(models.Savings_Tier_Rate, { as: 'Savings_Tier_Rate' });
     this.belongsTo(models.Wallets, { as: 'wallets' });
   }
   static config(sequelize) {

@@ -9,7 +9,8 @@ const transactionNetwoksRouter = require('./transactionNetwoks.router');
 const assetsRouter = require('./assets.router');
 const transactionTypesRouter = require('./transactionTypes.router');
 const transactionsRouter = require('./transactions.router');
-const savingsRouter = requiere('./savings.router');
+const savingsRouter = require('./savings.router');
+const savingsTransactionRateRouter = require('./savingsTransactionRate.router');
 
 function routerApi(app) {
   const router = express.Router();
@@ -26,6 +27,7 @@ function routerApi(app) {
   router.use('/transaction-type', transactionTypesRouter);
   router.use('/trasactions', transactionsRouter);
   router.use('/savings', savingsRouter);
+  router.use('/savings-transaction-rate', savingsTransactionRateRouter);
 }
 
 module.exports = routerApi;
