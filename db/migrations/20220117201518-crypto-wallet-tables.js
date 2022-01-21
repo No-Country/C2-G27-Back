@@ -8,6 +8,7 @@ const {
   Transaction_Networks_Schema,
   TRANSACTION_NETWORKS_TABLE,
 } = require('../models/transactionNetworks.model');
+const { Assets_Schema, ASSETS_TABLE } = require('../models/assets.model');
 
 module.exports = {
   up: async (queryInterface) => {
@@ -20,11 +21,13 @@ module.exports = {
       TRANSACTION_NETWORKS_TABLE,
       Transaction_Networks_Schema
     );
+    await queryInterface.createTable(ASSETS_TABLE, Assets_Schema);
   },
 
   down: async (queryInterface) => {
     await queryInterface.dropTable(WALLETS_TABLE);
     await queryInterface.dropTable(WALLET_ASSETS_SUMMARIES_TABLE);
     await queryInterface.dropTable(TRANSACTION_NETWORKS_TABLE);
+    await queryInterface.dropTable(ASSETS_TABLE);
   },
 };
