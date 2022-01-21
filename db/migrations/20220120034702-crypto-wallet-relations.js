@@ -9,6 +9,8 @@ const { TRANSACTION_TYPES_TABLE } = require('../models/transactionTypes.model');
 const {
   TRANSACTION_NETWORKS_TABLE,
 } = require('../models/transactionNetworks.model');
+const { SAVINGS_TABLE } = require('../models/savings.model');
+/* const { SAVINGS_TIER_RATE_TABLE } = require('../models/savingsTierRate.model'); */
 
 module.exports = {
   up: async (queryInterface) => {
@@ -80,11 +82,45 @@ module.exports = {
       onUpdate: 'cascade',
     });
     await queryInterface.addConstraint(TRANSACTIONS_TABLE, {
-      fields: ['asset_id'],
+      fields: ['transaction_network_id'],
       type: 'foreign key',
       name: 'tansaction-networks_trans_foreign_key',
       references: {
         table: TRANSACTION_NETWORKS_TABLE,
+        field: 'id',
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade',
+    });
+
+    await queryInterface.addConstraint(SAVINGS_TABLE, {
+      fields: ['asset_id'],
+      type: 'foreign key',
+      name: 'assets_savings_foreign_key',
+      references: {
+        table: ASSETS_TABLE,
+        field: 'id',
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade',
+    });
+    /*     await queryInterface.addConstraint(SAVINGS_TABLE, {
+      fields: ['saving_tier_rate_id'],
+      type: 'foreign key',
+      name: 'savings-tier-rate_savigs_foreign_key',
+      references: {
+        table: SAVINGS_TIER_RATE_TABLE,
+        field: 'id',
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade',
+    }); */
+    await queryInterface.addConstraint(SAVINGS_TABLE, {
+      fields: ['wallet_id'],
+      type: 'foreign key',
+      name: 'wallets_savings_foreign_key',
+      references: {
+        table: WALLETS_TABLE,
         field: 'id',
       },
       onDelete: 'cascade',

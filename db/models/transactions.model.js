@@ -25,7 +25,7 @@ const Transactions_Schema = {
   },
   networkTransactionId: {
     allowNull: false,
-    field: 'network_transaction_id',
+    field: 'transaction_network_id',
     type: DataTypes.STRING,
   },
   walletDestinationString: {
