@@ -3,7 +3,7 @@ const { Wallets_Schema, WALLETS_TABLE } = require('../models/wallets.model');
 const {
   Wallet_Assets_Summaries_Schema,
   WALLET_ASSETS_SUMMARIES_TABLE,
-} = require('../models/walletAssetsSummary.model');
+} = require('../models/walletAssetsSummaries.model');
 const {
   Transaction_Networks_Schema,
   TRANSACTION_NETWORKS_TABLE,

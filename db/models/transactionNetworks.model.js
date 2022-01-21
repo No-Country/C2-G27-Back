@@ -8,9 +8,10 @@ const Transaction_Networks_Schema = {
     primaryKey: true,
     type: DataTypes.STRING,
   },
-  username: {
+  transactionNeworkName: {
     allowNull: false,
     type: DataTypes.STRING,
+    field: 'transaction_network_name',
     unique: true,
   },
   createdAt: {

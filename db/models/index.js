@@ -4,7 +4,7 @@ const { Wallets, Wallets_Schema } = require('./wallets.model');
 const {
   Wallet_Assets_Summaries,
   Wallet_Assets_Summaries_Schema,
-} = require('./walletAssetsSummary.model');
+} = require('./walletAssetsSummaries.model');
 const {
   Transaction_Networks,
   Transaction_Networks_Schema,

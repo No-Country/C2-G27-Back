@@ -1,84 +1,84 @@
 const { v4: uuidv4 } = require('uuid');
 const boom = require('@hapi/boom');
-const { Models } = require('../libs/sequelize');
-const bcrypt = require('bcrypt');
+const { models } = require('../libs/sequelize');
 
 class TransactionNetworksService {
   async create(body) {
-    const hash = await bcrypt.hash(body.password, 15);
     try {
       const newTransactionNetworks = await models.Transactions.create({
         id: uuidv4(),
         ...body,
-        password: hash,
       });
       if (!newTransactionNetworks) {
         throw boom.badRequest('error creating transactionNetwoks');
       }
-      delete newTransactionNetworks.dataValues.password;
       return newTransactionNetworks;
     } catch (error) {
-      throw new Error(error);
+      throw boom.boomify(error, 'error creating transaction network');
     }
   }
 
   async find() {
-    const transactionNetworks = await models.transaction_networks.findAll({
-      include: ['people'],
-    });
-    if (Transactions.length === 0) {
-      throw boom.notFound('no Transactions found');
+    try {
+      const transactionNetworks = await models.transaction_networks.findAll({
+        include: ['transactions'],
+      });
+      if (transactionNetworks.length === 0) {
+        throw boom.notFound('no Transactions found');
+      }
+      return { Transactions };
+    } catch (error) {
+      throw boom.boomify(error, 'error finding transaction network');
     }
-    //delete users.dataValues.password;
-    return { Transactions };
   }
 
   async findOne(id) {
-    const transactionNetworks = await models.transaction_networks.findByPk(id);
-    if (!transactionNetworks) {
-      throw boom.notFound('Transactions not found');
-    }
-    delete transactionNetworks.dataValues.password;
-    return transactionNetworks;
-  }
-
-  async findByUsername(username) {
     try {
-      const transactionNetworks = await models.transaction_networks.findOne({
-        where: { username },
-      });
-      if (!user) {
+      const transactionNetworks = await models.transaction_networks.findByPk(
+        id
+      );
+      if (!transactionNetworks) {
         throw boom.notFound('Transactions not found');
       }
-      return user;
+      return transactionNetworks;
     } catch (error) {
-      throw new Error(error);
+      throw boom.boomify(error, 'error finding transaction networks');
     }
   }
 
   async update(id, body) {
     const transactionNetworks = await this.findOne(id);
-    const res = await transactionNetworks.update(body);
-
-    return res;
+    try {
+      const res = await transactionNetworks.update(body);
+      return res;
+    } catch (error) {
+      throw boom.boomify(error, 'error updating transaction network');
+    }
   }
 
   async partialUpdate(id, body) {
     const transactionNetworks = await this.findOne(id);
-    const transactionUpdate = {
-      ...transactionNetworks,
-      ...body,
-    };
-    const res = await user.update(transactionUpdate);
+    try {
+      const transactionUpdate = {
+        ...transactionNetworks,
+        ...body,
+      };
+      const res = await user.update(transactionUpdate);
 
-    return res;
+      return res;
+    } catch (error) {
+      throw boom.boomify(error, 'error updating transaction networks');
+    }
   }
 
   async delete(id) {
     const transactionNetworks = await this.findOne(id);
-    const res = transactionNetworks.destroy();
-
-    return res;
+    try {
+      const res = transactionNetworks.destroy();
+      return res;
+    } catch (error) {
+      throw boom.boomify(error, 'error deleting transaction network');
+    }
   }
 }
 

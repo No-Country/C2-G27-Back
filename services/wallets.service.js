@@ -14,7 +14,7 @@ class WalletsService {
       }
       return newWallet;
     } catch (error) {
-      throw boom.error(error);
+      throw boom.boomify(error, 'error creating wallet');
     }
   }
 
@@ -28,7 +28,7 @@ class WalletsService {
       }
       return { wallet };
     } catch (error) {
-      throw boom.error(error);
+      throw boom.boomify(error, 'error finding wallet');
     }
   }
 
