@@ -5,7 +5,7 @@ const { models } = require('../libs/sequelize');
 class TransactionTypesService {
   async create(body) {
     try {
-      const newTransactionTypes = await models.Transactions_Types.create({
+      const newTransactionTypes = await models.Transaction_Types.create({
         id: uuidv4(),
         ...body,
       });
@@ -20,11 +20,11 @@ class TransactionTypesService {
 
   async find() {
     try {
-      const transactionTypes = await models.transaction_Types.findAll();
+      const transactionTypes = await models.Transaction_Types.findAll();
       if (transactionTypes.length === 0) {
         throw boom.notFound('no transaction types found');
       }
-      return { Transactions };
+      return { transactionTypes };
     } catch (error) {
       throw boom.boomify(error, 'error finding transaction types');
     }
@@ -32,11 +32,11 @@ class TransactionTypesService {
 
   async findOne(id) {
     try {
-      const transactionTypes = await models.transaction_Types.findByPk(id);
+      const transactionTypes = await models.Transaction_Types.findByPk(id);
       if (!transactionTypes) {
         throw boom.notFound('transaction type not found');
       }
-      return transactionTypes;
+      return { transactionTypes };
     } catch (error) {
       throw boom.boomify(error, 'error finding transaction types');
     }

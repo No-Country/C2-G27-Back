@@ -50,9 +50,9 @@ const Savings_Tier_Rate_Schema = {
 
 class Savings_Tier_Rate extends Model {
   static associate(models) {
-    this.belongsTo(models.Assets, { as: 'assets' });
+    this.belongsTo(models.Assets, { as: 'asset' });
     this.hasMany(models.Savings, {
-      as: 'savings',
+      as: 'saving',
       foreignKey: 'saving_tier_rate_id',
     });
   }

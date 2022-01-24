@@ -20,11 +20,13 @@ class SavingsService {
 
   async find() {
     try {
-      const saving = await models.saving.findAll();
+      const saving = await models.Savings.findAll({
+        include: ['savings_Tier_Rate', 'asset'],
+      });
       if (saving.length === 0) {
         throw boom.notFound('no saving found');
       }
-      return { Savings };
+      return { saving };
     } catch (error) {
       throw boom.boomify(error, 'error finding saving ');
     }
@@ -32,7 +34,7 @@ class SavingsService {
 
   async findOne(id) {
     try {
-      const saving = await models.saving.findByPk(id);
+      const saving = await models.Savings.findByPk(id);
       if (!saving) {
         throw boom.notFound('saving not found');
       }
@@ -59,7 +61,7 @@ class SavingsService {
         ...saving,
         ...body,
       };
-      const res = await user.update(savingUpdate);
+      const res = await saving.update(savingUpdate);
 
       return res;
     } catch (error) {

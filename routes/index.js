@@ -24,10 +24,10 @@ function routerApi(app) {
   router.use('/wallet-assets-summary', walletAssetsSumariesRouter);
   router.use('/transaction-networks', transactionNetwoksRouter);
   router.use('/assets', assetsRouter);
-  router.use('/transaction-type', transactionTypesRouter);
-  router.use('/trasactions', transactionsRouter);
+  router.use('/transaction-types', transactionTypesRouter);
+  router.use('/transactions', transactionsRouter);
   router.use('/savings', savingsRouter);
-  router.use('/savings-transaction-rate', savingsTierRateRouter);
+  router.use('/savings-tier-rate', savingsTierRateRouter);
 }
 
 module.exports = routerApi;

@@ -30,10 +30,10 @@ const Transaction_Types_Schema = {
 
 class Transaction_Types extends Model {
   static associate(models) {
-    /* this.hasMany(models.Transactions, {
+    this.hasMany(models.Transactions, {
       as: 'Transactions',
-      foreignKey: 'transaction_type_id'
-    }); */
+      foreignKey: 'transactionTypeId',
+    });
   }
   static config(sequelize) {
     return {

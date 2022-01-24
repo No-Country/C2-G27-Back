@@ -5,7 +5,7 @@ const { models } = require('../libs/sequelize');
 class SavingsTierRateService {
   async create(body) {
     try {
-      const newSavingTierRate = await models.SavingsTierRate.create({
+      const newSavingTierRate = await models.Savings_Tier_Rate.create({
         id: uuidv4(),
         ...body,
       });
@@ -20,11 +20,11 @@ class SavingsTierRateService {
 
   async find() {
     try {
-      const savingTierRate = await models.savingsTierRate.findAll();
+      const savingTierRate = await models.Savings_Tier_Rate.findAll();
       if (savingTierRate.length === 0) {
         throw boom.notFound('no saving tier rate found');
       }
-      return { SavingsTierRate };
+      return { savingTierRate };
     } catch (error) {
       throw boom.boomify(error, 'error finding saving tier rate');
     }
@@ -32,7 +32,7 @@ class SavingsTierRateService {
 
   async findOne(id) {
     try {
-      const savingTierRate = await models.savingsTierRate.findByPk(id);
+      const savingTierRate = await models.Savings_Tier_Rate.findByPk(id);
       if (!savingTierRate) {
         throw boom.notFound('saving tier rate type not found');
       }
@@ -43,7 +43,7 @@ class SavingsTierRateService {
   }
 
   async update(id, body) {
-    const savingTierRate = await models.savingsTierRate.findOne(id);
+    const savingTierRate = await this.findOne(id);
     try {
       const res = await savingTierRate.update(body);
       return res;
@@ -53,7 +53,7 @@ class SavingsTierRateService {
   }
 
   async partialUpdate(id, body) {
-    const savingTierRate = await models.savingsTierRate.findOne(id);
+    const savingTierRate = await this.findOne(id);
     try {
       const savingTierRateUpdate = {
         ...savingTierRate,
@@ -68,7 +68,7 @@ class SavingsTierRateService {
   }
 
   async delete(id) {
-    const savingTierRate = await models.savingsTierRate.findOne(id);
+    const savingTierRate = await this.findOne(id);
     try {
       const res = savingTierRate.destroy();
       return res;

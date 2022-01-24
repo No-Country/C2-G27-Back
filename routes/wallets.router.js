@@ -38,13 +38,13 @@ router.get(
 );
 
 router.post(
-  '/',
+  '/:id',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin'),
   async (req, res, next) => {
     try {
-      const body = req.body;
-      const wallet = await walletService.create(body);
+      const { id } = req.params;
+      const wallet = await walletService.create(id);
 
       res.json(wallet);
     } catch (error) {

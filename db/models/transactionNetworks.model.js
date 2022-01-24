@@ -8,7 +8,7 @@ const Transaction_Networks_Schema = {
     primaryKey: true,
     type: DataTypes.STRING,
   },
-  transactionNeworkName: {
+  transactionNetworkName: {
     allowNull: false,
     type: DataTypes.STRING,
     field: 'transaction_network_name',
@@ -30,9 +30,10 @@ const Transaction_Networks_Schema = {
 
 class Transaction_Networks extends Model {
   static associate(models) {
-    /* this.hasMany(models.Transactions, {
+    this.hasMany(models.Transactions, {
       as: 'Transactions',
-    }); */
+      foreignKey: 'transactionNetworkId',
+    });
   }
   static config(sequelize) {
     return {

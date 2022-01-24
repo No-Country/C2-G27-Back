@@ -13,6 +13,10 @@ const Savings_Schema = {
     field: 'asset_id',
     type: DataTypes.STRING,
   },
+  amount: {
+    allowNull: false,
+    type: DataTypes.DOUBLE,
+  },
   savingsTierRateId: {
     allowNull: false,
     field: 'saving_tier_rate_id',
@@ -59,9 +63,9 @@ const Savings_Schema = {
 
 class Savings extends Model {
   static associate(models) {
-    this.belongsTo(models.Assets, { as: 'assets' });
-    this.belongsTo(models.Savings_Tier_Rate, { as: 'Savings_Tier_Rate' });
-    this.belongsTo(models.Wallets, { as: 'wallets' });
+    this.belongsTo(models.Assets, { as: 'asset' });
+    this.belongsTo(models.Savings_Tier_Rate, { as: 'savings_Tier_Rate' });
+    this.belongsTo(models.Wallets, { as: 'wallet' });
   }
   static config(sequelize) {
     return {

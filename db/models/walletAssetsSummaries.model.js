@@ -38,8 +38,8 @@ const Wallet_Assets_Summaries_Schema = {
 
 class Wallet_Assets_Summaries extends Model {
   static associate(models) {
-    this.belongsTo(models.Wallets, { as: 'wallets' });
-    this.belongsTo(models.Assets, { as: 'assets' });
+    this.belongsTo(models.Wallets, { as: 'wallet' });
+    this.belongsTo(models.Assets, { as: 'asset' });
   }
   static config(sequelize) {
     return {

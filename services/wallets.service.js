@@ -21,7 +21,7 @@ class WalletsService {
   async find() {
     try {
       const wallet = await models.Wallets.findAll({
-        include: ['users'],
+        include: ['user', 'Wallet_Assets_Summaries'],
       });
       if (wallet.length === 0) {
         throw boom.notFound('no wallets found');

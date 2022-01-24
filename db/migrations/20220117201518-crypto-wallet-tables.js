@@ -54,7 +54,7 @@ module.exports = {
     await queryInterface.dropTable(WALLETS_TABLE);
     await queryInterface.dropTable(TRANSACTION_NETWORKS_TABLE);
     await queryInterface.dropTable(TRANSACTION_TYPES_TABLE);
-    await queryInterface.dropTable(SAVING_TIER_RATE_TABLE);
+    await queryInterface.dropTable(SAVINGS_TIER_RATE_TABLE);
     await queryInterface.dropTable(ASSETS_TABLE);
   },
 };

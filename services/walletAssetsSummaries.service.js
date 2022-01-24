@@ -22,7 +22,7 @@ class WalletAssetSummariesService {
   async find() {
     try {
       const walletAssetsSummary = await models.Wallet_Assets_Summaries.findAll({
-        include: ['wallets, assets'],
+        include: ['wallet'],
       });
       if (walletAssetsSummary.length === 0) {
         throw boom.notFound('no walletAssetsSummarys found');

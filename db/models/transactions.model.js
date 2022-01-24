@@ -23,12 +23,12 @@ const Transactions_Schema = {
     field: 'asset_id',
     type: DataTypes.STRING,
   },
-  networkTransactionId: {
+  transactionNetworkId: {
     allowNull: false,
     field: 'transaction_network_id',
     type: DataTypes.STRING,
   },
-  walletDestinationString: {
+  walletDestinationId: {
     allowNull: false,
     field: 'wallet_destination_id',
     type: DataTypes.STRING,
@@ -58,10 +58,10 @@ const Transactions_Schema = {
 
 class Transactions extends Model {
   static associate(models) {
-    this.belongsTo(models.Wallets, { as: 'wallets' });
-    this.belongsTo(models.Assets, { as: 'assets' });
-    this.belongsTo(models.Transaction_Networks, { as: 'Transaction_Networks' });
-    this.belongsTo(models.Transaction_Types, { as: 'Transaction_Types' });
+    this.belongsTo(models.Wallets, { as: 'wallet' });
+    this.belongsTo(models.Assets, { as: 'asset' });
+    this.belongsTo(models.Transaction_Networks, { as: 'transaction_Network' });
+    this.belongsTo(models.Transaction_Types, { as: 'transaction_Type' });
   }
   static config(sequelize) {
     return {
