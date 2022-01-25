@@ -1,3 +1,4 @@
+require('dotenv').config();
 let URI = null;
 if (process.env.NODE_ENV === 'production') {
   URI = process.env.CLEARDB_DATABASE_URL;

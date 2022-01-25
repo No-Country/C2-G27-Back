@@ -1,35 +1,26 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const USERS_TABLE = 'users';
+const WALLET_ASSETS_SUMMARIES_TABLE = ' wallet_assets_summaries';
 
-const Users_Schema = {
+const Wallet_Assets_Summaries_Schema = {
   id: {
     allowNull: false,
     primaryKey: true,
     type: DataTypes.STRING,
   },
-  username: {
+  walletId: {
     allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
-  },
-  email: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
-  },
-  password: {
-    allowNull: false,
+    field: 'wallet_id',
     type: DataTypes.STRING,
   },
-  role: {
+  assetId: {
     allowNull: false,
+    field: 'asset_id',
     type: DataTypes.STRING,
   },
-  peopleId: {
+  ammount: {
     allowNull: false,
-    field: 'people_id',
-    type: DataTypes.STRING,
+    type: DataTypes.DOUBLE,
   },
   createdAt: {
     allowNull: false,
@@ -45,22 +36,23 @@ const Users_Schema = {
   },
 };
 
-class Users extends Model {
+class Wallet_Assets_Summaries extends Model {
   static associate(models) {
-    this.belongsTo(models.People, { as: 'people' });
-    this.hasMany(models.Wallets, {
-      as: 'wallets',
-      foreignKey: 'userId',
-    });
+    this.belongsTo(models.Wallets, { as: 'wallet' });
+    this.belongsTo(models.Assets, { as: 'asset' });
   }
   static config(sequelize) {
     return {
       sequelize,
-      tableName: USERS_TABLE,
-      modelName: 'Users',
+      tableName: WALLET_ASSETS_SUMMARIES_TABLE,
+      modelName: 'Wallet_Assets_Summaries',
       timestamps: true,
     };
   }
 }
 
-module.exports = { USERS_TABLE, Users_Schema, Users };
+module.exports = {
+  WALLET_ASSETS_SUMMARIES_TABLE,
+  Wallet_Assets_Summaries_Schema,
+  Wallet_Assets_Summaries,
+};

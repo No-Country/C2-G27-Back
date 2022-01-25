@@ -4,7 +4,7 @@ require('./auth');
 const routerApi = require('./routes');
 const express = require('express');
 const cors = require('cors');
-//const logger = require('morgan');
+
 const { configViews } = require('./views/config');
 const { boomErrorHandler } = require('./middlewares/error.handler');
 const { sequelizeErrorHandler } = require('./middlewares/error.handler');
@@ -22,8 +22,7 @@ app.use(cors());
 
 configViews(app);
 routerApi(app);
-//middlewares
-//app.use(logger('tiny'));
+
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(sequelizeErrorHandler);
