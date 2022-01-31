@@ -3,27 +3,36 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "lint": "eslint .  --ext .js",
     "lint-fix": "eslint --fix .  --ext .js",
-    "prepare": "husky install"
+    "migrations:generate": "sequelize-cli migration:generate --name",
+    "migrations:run": "sequelize-cli db:migrate",
+    "migrations:revert": "sequelize-cli db:migrate:undo",
+    "migrations:delete": "sequelize-cli db:migrate:undo:all",
+    "migrations:reset": "sequelize-cli db:migrate:undo:all && sequelize-cli db:migrate",
+    "migrations:reset:all": "sequelize-cli db:migrate:undo:all && sequelize-cli db:migrate && sequelize-cli db:seed:all"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
+    "@hapi/boom": "^9.1.4",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
-    "dotenv": "^8.2.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "husky": "^7.0.4",
-    "morgan": "~1.9.1",
-    "mysql2": "^2.2.3",
-    "sequelize": "^6.3.5"
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.2",
+    "sequelize-cli": "^6.3.0",
+    "dotenv": "^8.6.0"
   },
   "devDependencies": {
-    "eslint": "^8.6.0",
-    "husky": "^7.0.0",
-    "sequelize-cli": "^6.3.0"
+    "eslint": "^8.6.0"
   }
 }
